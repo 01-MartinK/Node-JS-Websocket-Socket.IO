@@ -4,31 +4,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>WebSockets Test</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="main.css">
     </head>
     <body>
-        <h1>Websockets Test</h1>
-        <ul class="tsummary">
-            <li>Learn the basics of Websockets</li>
-            <li>Pain with websockets</li>
-        </ul>
-        <button onclick="sendMessage()">Send Message</button>
-        <script>
-            function sendMessage() {
-                var message = "Hello from a button click";  
-                ws.send(message);
-            };
-
-            const ws = new WebSocket("ws://localhost:3310");
-
-            ws.addEventListener('open', () => {
-                console.log("We are connected!");
-
-                ws.send("Data sent test");
-            });
-
-            ws.addEventListener('message', ({ data }) => {
-                console.log(data)
-            });
-        </script>
+        <h1>Websockets Button Live Test</h1>
+        <p>Button that are updated live</p>
+        <grid class="jail_cell_container" id="jail_cell_container">
+        </grid>
+        <script src="app.js"></script>
     </body>
 </html>

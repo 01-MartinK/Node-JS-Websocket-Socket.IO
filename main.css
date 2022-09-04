@@ -1,0 +1,25 @@
+#jail_cell_container {
+    display: flex;
+    gap: 1em;
+}
+
+h1 {
+    color: cadetblue;
+}
+
+.not_active {
+    width: 8em;
+    height: 8em;
+    background-color: greenyellow;
+    border-radius: 8px;
+}
+
+.not_active:hover{
+    background-color: aquamarine;
+}
+
+.active {
+    width: 8em;
+    height: 8em;
+    background-color: maroon;
+}

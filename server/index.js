@@ -1,17 +1,30 @@
-const WebSocket = require('ws');
+var express = require('express');
 
-const wss = new WebSocket.Server({ port: 3310 });
+var app = express();
+var server = app.listen(3310);
 
-wss.on('connection', ws => {
-    console.log("New client connected");
+app.use(express.static('public'));
 
-    ws.on("message", data => {
-        console.log(`Client sent us: ${data}`);
+console.log("Server running at http://localhost:3310");
 
-        ws.send("Receive this browser");
-    });
+const io = require("socket.io")(server, {cors: { origin: "*"}})
 
-    ws.on("close", () => {
-        console.log("Client has disconnected");
-    });
+var selected_cells = []
+
+io.on('connection', socket => {
+    console.log("A new client has connected");
+    io.emit('cells_changed', selected_cells)
+
+    socket.on('message', data => {
+        console.log(data)
+    })
+
+    socket.on('cell_selected', id => {
+        console.log(id)
+    
+        if (!selected_cells.includes(id)) selected_cells.push(id);
+
+        io.emit('cells_changed', selected_cells)
+    })
 });
+
