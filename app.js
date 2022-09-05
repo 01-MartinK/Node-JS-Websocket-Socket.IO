@@ -43,8 +43,13 @@ function buttonPressed(e) {
 
 // refresh the cells accordingly
 function refresh_cells() {
-    selected_cells.forEach(id => {
-        document.getElementById(id).classList.remove('not_active')
-        document.getElementById(id).classList.add('active')
+    selected_cells.forEach(listing => {
+        if (listing.selected) {
+            document.getElementById(listing.id).classList.remove('not_active')
+            document.getElementById(listing.id).classList.add('active')
+        } else {
+            document.getElementById(listing.id).classList.remove('active')
+            document.getElementById(listing.id).classList.add('not_active')
+        }
     })
 }
